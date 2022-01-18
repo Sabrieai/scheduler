@@ -17,15 +17,22 @@ export default function DayListItem(props) {
   const spaceFree = ItemClass.replace(" ","")
 
   const formatSpots = () => { 
-    let message = props.spots ? `${props.spots} spots` : "no spots"
+    let message;
+    if (props.spots === 0) {
+      message = "no spots"
+    } else if (props.spots === 1) {
+      message = `${props.spots} spot`
+    } else {
+      message = `${props.spots} spots`
+    }
+
     return `${message} remaining`
   }
 
   return (
     <li className={spaceFree} onClick={() => props.setDay(props.name)}>
       <h2 className="text--regular">{props.name}</h2> 
-      {/* <h3 className="text--light">{props.spots} spots remaining</h3> */}
-      <h3 lassName="text--light">{props.spots === 1 ? `${props.spots} spot remaining`: formatSpots(props.spots)} </h3>
+      <h3 lassName="text--light">{ formatSpots(props.spots)} </h3>
     </li>
   );
 }
