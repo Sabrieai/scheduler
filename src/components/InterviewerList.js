@@ -14,7 +14,7 @@ export default function InterviewList (props) {
     key={indvInterviewer.id}
     name={indvInterviewer.name}
     avatar={indvInterviewer.avatar}
-    selected={indvInterviewer.id === props.value}
+    selected={indvInterviewer.id === value}
 		setInterviewer={() => onChange(indvInterviewer.id)}
     >
     </InterviewListItems>
@@ -23,7 +23,7 @@ export default function InterviewList (props) {
  
   return (
 
-      <section onClick={console.log(props)} className="interviewers">
+      <section className="interviewers">
        <h4 className="interviewers__header text--light">Interviewer</h4>
        <ul className="interviewers__list">{interviewersList}</ul>
       </section>
