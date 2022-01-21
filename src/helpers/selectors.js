@@ -27,3 +27,30 @@ export function getAppointmentsForDay(state, day) {
 
    return results;
  }
+
+
+ export function  getInterview(state, interview) {
+  //return an object that contains the interview data if it is passed an object that contains an interview.
+
+  let allInterviewers = state.interviewers;
+
+  //cuts process short if there are no interviewers or specified interview
+  if (!interview || !allInterviewers) {
+    return null;
+  }
+  
+  let results = {};
+
+  // loop through all interviewers 
+
+  for (let interviewerId in allInterviewers) {
+    // checks if the interviewer id is the one we are looking for
+    if (interview.interviewer === allInterviewers[interviewerId].id) {
+      // sets interviewers info instead of just the id for the interview
+    results["interviewer"] = allInterviewers[interviewerId]
+    results["student"] = interview.student
+    }
+  }
+
+ return results;
+ }
