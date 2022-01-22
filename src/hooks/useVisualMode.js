@@ -6,10 +6,24 @@ export default function useVisualMode (initial) {
   const [mode, setMode] = useState(initial);
   const [history, setHistory] = useState([initial]); 
 
-  const transition = (newMode) => {
+  const transition = (newMode, replace) => {
 
-    setMode(newMode)
-    setHistory([...history, newMode])
+    const add = () => {
+      setMode(newMode)
+      setHistory([...history, newMode])
+    }
+
+    const skip = () => {
+
+      setMode(newMode)
+      setHistory([...history, newMode])
+      const replaced = history.length-2
+      const usurp = [...history].splice(replaced,1)
+      setHistory([...usurp])
+
+    }
+
+    replace ? skip() : add();
 
   }
 
