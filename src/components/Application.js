@@ -47,9 +47,36 @@ const schedule = appointments.map((appointment) => {
       time={appointment.time}
       interview={interview}
       interviewers={interviewers}
+      bookInterview={bookInterview}
     />
   );
 });
+
+function bookInterview(id, interview) {
+  console.log(id, interview);
+  console.log(id);
+
+  const appointment = {
+    ...state.appointments[id],
+    interview: { ...interview }
+  };
+
+  const appointments = {
+    ...state.appointments,
+    [id]: appointment
+  };
+
+
+  return axios.put(`/api/appointments/${id}`,appointment)
+  .then(function (response) {
+    console.log(response);
+    setState(prev => ({...prev, appointments}))
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+
+}
 
 
   return (
