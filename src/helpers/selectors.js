@@ -54,3 +54,34 @@ export function getAppointmentsForDay(state, day) {
 
  return results;
  }
+
+ export function getInterviewersForDay(state, day) {
+
+  // filter days to get specific day
+  const specificDay = state.days.filter(thisDay => thisDay.name === day);
+  let allInterviewers = state.interviewers;
+  let results = []
+
+//cuts process short if there is no day data or specified  day
+  if (!specificDay[0] || !day) {
+    return results;
+  } 
+  
+  
+  let interviewers = specificDay[0].interviewers
+
+  // loop through interviewers for that day and get their info 
+  for (let interviewer of interviewers) {
+
+    let interviewerInfo = allInterviewers[`${interviewer}`]
+
+    if (interviewer === interviewerInfo.id) {
+       
+      results.push(interviewerInfo)
+
+    }
+    
+   }
+
+ return results;
+}
