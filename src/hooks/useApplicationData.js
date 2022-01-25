@@ -39,20 +39,21 @@ export default function useApplicationData () {
   
     return axios.put(`/api/appointments/${id}`,appointment)
     .then(function () {
-      
+     
+     const prevInterview={...state.appointments[`${id}`].interview}
+
       setState(prev => ({...prev, appointments}))
 
       let days = [...state.days];
 
       for (let day in state.days) {
 
-      if (state.days[day].appointments.includes(id)) {
+      if (state.days[day].appointments.includes(id) && !prevInterview) {
 
         const currentSpots = state.days[day].spots
         const updateDay = {...state.days[day], spots: currentSpots - 1}
         days = [...state.days]
         days[day]=updateDay
-        
        }
 
       }
