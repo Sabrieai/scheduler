@@ -48,6 +48,7 @@ const schedule = appointments.map((appointment) => {
       interview={interview}
       interviewers={interviewers}
       bookInterview={bookInterview}
+      cancelInterview={cancelInterview}
     />
   );
 });
@@ -69,12 +70,40 @@ function bookInterview(id, interview) {
 
   return axios.put(`/api/appointments/${id}`,appointment)
   .then(function (response) {
-    console.log(response);
+    console.log("save response then", response);
     setState(prev => ({...prev, appointments}))
   })
-  .catch(function (error) {
-    console.log(error);
-  });
+  // .catch(function (error) {
+  //   console.log(error.response);
+  // });
+
+}
+
+function cancelInterview(id) {
+  console.log(id);
+
+  const appointment = {
+    ...state.appointments[id],
+    interview: null
+  };
+
+  console.log(appointment)
+
+  const appointments = {
+    ...state.appointments,
+    [id]: appointment
+  };
+
+console.log(appointments);
+
+  return axios.delete(`/api/appointments/${id}`)
+  .then(function (response) {
+    console.log("delete response then", response);
+    setState(prev => ({...prev, appointments}))
+  })
+  // .catch(function (error) {
+  //   console.log(error);
+  // });
 
 }
 
