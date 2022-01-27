@@ -1,8 +1,12 @@
 # Scheduler
 
-Scheduler is a single-page React application that allows students to book interviews with a mentor. Students can create, edit, and delete their appointment. The data is being retrieved from an [API](https://github.com/lighthouse-labs/scheduler-api), and when there are changes to a booking that data is sent to the API to persist. It has included Jest unit tests, Storybook visual tests, and Cypress end-to-end-tests. 
+Scheduler is a single-page React application that allows students to book interviews with a mentor. Students can create, edit, and delete their appointment. The data is being retrieved from an [API](https://github.com/lighthouse-labs/scheduler-api), and when there are changes to a booking that data is sent to the API to persist using a PostgreSQL database. It has included Jest unit tests, Storybook visual tests, and Cypress end-to-end-tests. 
 
 ## Final Product
+
+<img width="1120" alt="Screen Shot 2022-01-26 at 11 50 35 PM" src="https://user-images.githubusercontent.com/93690436/151294143-d41d0fa8-4f8b-4b0b-bf2a-068b049b3353.png">
+
+<img width="1117" alt="Screen Shot 2022-01-26 at 11 51 08 PM" src="https://user-images.githubusercontent.com/93690436/151294155-0b74f1ec-325f-41dc-add6-cb4a947dfa6b.png">
 
 ### Scheduler is prepared for user input (and the lack of user input)
 
