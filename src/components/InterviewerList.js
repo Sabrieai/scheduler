@@ -20,6 +20,8 @@ function InterviewList (props) {
     </InterviewListItems>
     );
 });
+
+ console.log(interviewers);
  
   return (
 
