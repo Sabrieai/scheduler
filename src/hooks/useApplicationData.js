@@ -24,7 +24,7 @@ export default function useApplicationData () {
     });
   },[])
 
-  // function that counts empty spots for that day
+  // function that counts empty spots for given day and updates that day
   const freeSpots = function (day, appointments) {
     let spots = 0;
     for (const id of day.appointments) {
@@ -36,7 +36,8 @@ export default function useApplicationData () {
     return spots;
   };
 
-  const updateSpots = function (state, appointments, id) {
+  // function that returns an updated days array 
+  const updateSpots = function (state, appointments) {
     
     const currentDay = state.days.find(day => day.name === state.day);
     const spots = freeSpots(currentDay, appointments);
@@ -64,25 +65,12 @@ export default function useApplicationData () {
     return axios.put(`/api/appointments/${id}`,appointment)
     .then(function () {
      
-     const prevInterview={...state.appointments[`${id}`]}
-
-      setState(prev => ({...prev, appointments}))
-
-      let days = [...state.days];
-
-      for (let day in state.days) {
-
-      if (state.days[day].appointments.includes(id) && !prevInterview.interview) {
-
-        const currentSpots = state.days[day].spots
-        const updateDay = {...state.days[day], spots: currentSpots - 1}
-        days = [...state.days]
-        days[day]=updateDay
-       }
-
-      }
-
-      setState(prev => ({...prev, days}))
+      const days = updateSpots(state, appointments);
+      setState({
+        ...state,
+        appointments,
+        days
+      })
 
     })
   }
